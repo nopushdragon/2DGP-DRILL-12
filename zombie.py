@@ -169,7 +169,15 @@ class Zombie:
         self.x -= distance * math.cos(self.dir)
         self.y -= distance * math.sin(self.dir)
 
-   
+    def away_to_boy(self, r=7):
+        # 여기를 채우시오.
+        self.state = 'Walk'
+        self.away_little_to(common.boy.x, common.boy.y)
+        if self.distance_more_than(common.boy.x, common.boy.y, self.x, self.y, r):
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.RUNNING
+        pass
 
     def build_behavior_tree(self):
         # 목표 지점을 (1000, 1000) 설정하는 액션 노드를 생성.
