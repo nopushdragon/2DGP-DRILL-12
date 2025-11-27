@@ -158,7 +158,11 @@ class Zombie:
         else :
             return BehaviorTree.FAIL
 
+    def distance_more_than(self, x1, y1, x2, y2, r):
+        distance2 = (x1 - x2) ** 2 + (y1 - y2) ** 2
+        return distance2 > (PIXEL_PER_METER * r) ** 2
 
+    
 
     def build_behavior_tree(self):
         # 목표 지점을 (1000, 1000) 설정하는 액션 노드를 생성.
