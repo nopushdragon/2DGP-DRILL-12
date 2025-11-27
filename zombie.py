@@ -162,7 +162,14 @@ class Zombie:
         distance2 = (x1 - x2) ** 2 + (y1 - y2) ** 2
         return distance2 > (PIXEL_PER_METER * r) ** 2
 
-    
+    def away_little_to(self, tx, ty):
+        # frame_time을 이용해서 이동거리 계산
+        self.dir = math.atan2(ty-self.y, tx-self.x)  # 각도 구하기
+        distance = RUN_SPEED_PPS * game_framework.frame_time
+        self.x -= distance * math.cos(self.dir)
+        self.y -= distance * math.sin(self.dir)
+
+   
 
     def build_behavior_tree(self):
         # 목표 지점을 (1000, 1000) 설정하는 액션 노드를 생성.
